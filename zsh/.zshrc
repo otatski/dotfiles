@@ -114,20 +114,19 @@ eval `dircolors ~/.dircolors`
 alias nv="nvim"
 alias dev="cd /home/$USER/development"
 alias dos2unix="dos2unix"
-alias flutter="/home/$USER/development/flutter/bin/flutter"
-alias dart="/home/$USER/development/flutter/bin/dart"
+alias flutter="/home/$USER/flutter/bin/flutter"
+alias dart="/home/$USER/flutter/bin/dart"
 alias dotfiles="/home/$USER/dotfiles"
 
 
 # EXPORTS
-export PATH="$PATH:/home/$USER/development/flutter/bin/flutter"
-export PATH="$PATH:/home/$USER/development/flutter/bin/dart"
+export PATH="$PATH:/home/$USER/flutter/bin/flutter"
+export PATH="$PATH:/home/$USER/flutter/bin/dart"
 export PATH="$PATH:/home/$USER/.cargo/bin/cargo"
 export PATH="$PATH:/home/$USER/.cargo/bin/rustup"
 export PATH="$PATH:/home/$USER/.cargo/bin/rustc"
 export PATH="$PATH:/home/$USER/.local/bin/"
 export PATH="$PATH:/usr/local/go/bin"
-
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

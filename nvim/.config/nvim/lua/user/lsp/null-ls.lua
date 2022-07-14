@@ -24,8 +24,11 @@ local sources = { null_ls.builtins.diagnostics.flake8 }
 local sources = { null_ls.builtins.formatting.dart_format }
 
 
+-- Rust
+local sources = { null_ls.builtins.formatting.rustfmt }
 
-
+-- Go
+-- local sources = { null_ls.builtins.diagnostics.golangci_lint }
 
 
 -- https://github.com/prettier-solidity/prettier-plugin-solidity

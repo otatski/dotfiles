@@ -144,7 +144,7 @@
 |`>`            |                       |               |
 
 ## Plugins
-> The below keymaps are used for their relavent *Plugins*
+> The below keymaps are used for their relevant *Plugins*
 
 ### NvimTree
 -  Used for NVimTree
