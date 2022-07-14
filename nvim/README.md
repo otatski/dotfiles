@@ -1,3 +1,5 @@
+> This README is a copy from https://github.com/LunarVim/nvim-basic-ide
+
 # A Basic Stable IDE config for Neovim
 
 > Why does this repo exist?
