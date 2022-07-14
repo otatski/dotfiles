@@ -21,12 +21,16 @@ keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
-keymap("n", "<C-Up>", "<C-w>j", opts)
+keymap("n", "<C-Up>", "<C-w>k", opts)
 keymap("n", "<C-Left>", "<C-w>h", opts)
-keymap("n", "<C-Down>", "<C-w>k", opts)
+keymap("n", "<C-Down>", "<C-w>j", opts)
 keymap("n", "<C-Right>", "<C-w>l", opts)
 
+-- Beginning of line
+keymap("n", "<leader>q", "<Home>", opts)
 
+-- End of line
+keymap("n", "<leader>e", "<End>", opts)
 
 -- Resize with arrows
 keymap("n", "<A-Up>", ":resize -2<CR>", opts)
@@ -53,7 +57,7 @@ keymap("v", "p", '"_dP', opts)
 -- Insert --
 -- Press jk fast to exit insert mode
 keymap("i", "jk", "<ESC>", opts)
-keymap("i", "<leader><leader>", "<ESC>", opts)
+-- keymap("i", "<leader><leader>", "<ESC>", opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -63,7 +67,7 @@ keymap("v", ">", ">gv", opts)
 -- Plugins --
 
 -- NvimTree
-keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+keymap("n", "<leader>t", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
