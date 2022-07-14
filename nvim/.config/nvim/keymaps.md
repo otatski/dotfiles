@@ -1,7 +1,7 @@
 # NeoVim Keymaps
 
 ## Keymap Information / Features
-> I currently use the *Corsair K65 RGB Mini* and I have the arrow keys remapped to *FN+W* *FN+A* *FN+S* *FN+D* respectively. Due to this and the fact that I've been gaming on PC most of my life, it is easier to use those keys to navigate in most cicumstances. 
+> I currently use the *Corsair K65 RGB Mini* and I have the arrow keys remapped to *FN+W* *FN+A* *FN+S* *FN+D* respectively. Due to this and the fact that I've been gaming on PC most of my life, it is easier to use those keys to navigate in most circumstances. 
 
 ## Leader
 > Leader Key
@@ -22,7 +22,7 @@
 |`ESC`          | Exit insert mode          |               |
 |`CTRL + c`     | Exit insert mode          |               |
 |`CTRL + [`     | Exit insert mode          |               |
-
+ 
 
 ## Normal Mode
 > The below keymaps are for use in *Normal Mode*.

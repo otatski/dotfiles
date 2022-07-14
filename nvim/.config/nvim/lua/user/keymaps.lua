@@ -57,7 +57,7 @@ keymap("v", "p", '"_dP', opts)
 -- Insert --
 -- Press jk fast to exit insert mode
 keymap("i", "jk", "<ESC>", opts)
--- keymap("i", "<leader><leader>", "<ESC>", opts)
+keymap("i", "kj", "<ESC>", opts)
 
 -- Visual --
 -- Stay in indent mode

@@ -115,7 +115,8 @@ alias nv="nvim"
 alias dev="cd /home/$USER/development"
 alias dos2unix="dos2unix"
 alias flutter="/home/$USER/development/flutter/bin/flutter"
-alias dart="/home/matfo/development/flutter/bin/dart"
+alias dart="/home/$USER/development/flutter/bin/dart"
+alias dotfiles="/home/$USER/dotfiles"
 
 
 # EXPORTS
