@@ -116,10 +116,11 @@ alias dev="cd /home/$USER/development"
 alias dos2unix="dos2unix"
 alias flutter="/home/$USER/flutter/bin/flutter"
 alias dart="/home/$USER/flutter/bin/dart"
-alias dotfiles="/home/$USER/dotfiles"
+alias dot="/home/$USER/dotfiles"
 
 
 # EXPORTS
+# export PATH="$PATH:/home/$USER/flutter/bin"
 export PATH="$PATH:/home/$USER/flutter/bin/flutter"
 export PATH="$PATH:/home/$USER/flutter/bin/dart"
 export PATH="$PATH:/home/$USER/.cargo/bin/cargo"
