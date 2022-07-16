@@ -101,37 +101,34 @@ source $ZSH/oh-my-zsh.sh
 # Set colors for LS_COLORS
 eval `dircolors ~/.dircolors`
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#
 # ALIASES
+alias sz="source /home/$USER/.zshrc"
 alias nv="nvim"
 alias dev="cd /home/$USER/development"
 alias dos2unix="dos2unix"
 alias flutter="/home/$USER/flutter/bin/flutter"
 alias dart="/home/$USER/flutter/bin/dart"
 alias dot="/home/$USER/dotfiles"
-
+alias nvz="nv /home/$USER/.zshrc"
 
 # EXPORTS
-# export PATH="$PATH:/home/$USER/flutter/bin"
-export PATH="$PATH:/home/$USER/flutter/bin/flutter"
-export PATH="$PATH:/home/$USER/flutter/bin/dart"
-export PATH="$PATH:/home/$USER/.cargo/bin/cargo"
-export PATH="$PATH:/home/$USER/.cargo/bin/rustup"
-export PATH="$PATH:/home/$USER/.cargo/bin/rustc"
+## Flutter and Dart
+export PATH="$PATH:/home/$USER/flutter/bin"
+## Cargo Bin
+export PATH="$PATH:/home/$USER/.cargo/bin"
+## Local Bin
 export PATH="$PATH:/home/$USER/.local/bin/"
+## Golang
 export PATH="$PATH:/usr/local/go/bin"
-
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-
-
+## NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
