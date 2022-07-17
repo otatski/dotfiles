@@ -1,10 +1,9 @@
-
 local config = {
 
   -- Configure AstroNvim updates
   updater = {
     remote = "origin", -- remote to use
-    channel = "stable", -- "stable" or "nightly"
+    channel = "nightly", -- "stable" or "nightly"
     version = "latest", -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
     branch = "main", -- branch name (NIGHTLY ONLY)
     commit = nil, -- commit hash (NIGHTLY ONLY)
@@ -26,58 +25,53 @@ local config = {
     -- duskfox = { -- a table of overrides
     --   Normal = { bg = "#000000" },
     -- },
-    -- default_theme = function(highlights) -- or a function that returns one
-      -- local C = require "default_theme.colors"
+    default_theme = function(highlights) -- or a function that returns one
+      local C = require "default_theme.colors"
 
-      -- highlights.Normal = { fg = C.fg, bg = C.bg }
-      -- return highlights
-    -- end,
+      highlights.Normal = { fg = C.fg, bg = C.bg }
+      return highlights
+    end,
   },
 
   -- set vim options here (vim.<first_key>.<second_key> =  value)
   options = {
     opt = {
+      -- guicursor = "",
       relativenumber = true, -- sets vim.opt.relativenumber
+      colorcolumn = "80",
+      ignorecase = true,
+      mouse = "a",
+      showtabline = 0,
+      hlsearch = false,
+      expandtab = true,
+      shiftwidth = 4,
+      tabstop = 4,
+      cursorline = true,
+      signcolumn = "yes",
+      conceallevel = 0,
+      -- showmode = false,
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
-      ["<C-Up>"] = {"<C-w>k", desc = "Up Window"},
-      ["<C-Left>"] = {"<C-w>h", desc = "Left Window"},
-      ["<C-Down>"] = {"<C-w>j", desc = "Down Window"},
-      ["<C-Right>"] = {"<C-w>l", desc = "Right Window"},
     },
   },
 
   -- Default theme configuration
   default_theme = {
-    -- diagnostics_style = { italic = true },
+    diagnostics_style = { italic = true },
     -- Modify the color table
     colors = {
-      -- fg = "#abb2bf",
+      fg = "#abb2bf",
     },
     plugins = { -- enable or disable extra plugin highlighting
-      -- aerial = true,
-      -- beacon = false,
-      -- bufferline = true,
-      -- dashboard = true,
-      -- highlighturl = true,
-      -- hop = false,
-      -- indent_blankline = true,
-      -- lightspeed = false,
-      -- ["neo-tree"] = true,
-      -- notify = true,
-      -- ["nvim-tree"] = false,
-      -- ["nvim-web-devicons"] = true,
-      -- rainbow = true,
-      -- symbols_outline = false,
-      -- telescope = true,
-      -- vimwiki = false,
       -- ["which-key"] = true,
     },
   },
 
   -- Disable AstroNvim ui features
   ui = {
+    nui_input = true,
+    telescope_select = true,
   },
 
   -- Configure plugins
@@ -86,7 +80,7 @@ local config = {
     init = {
       -- You can disable default plugins as follows:
       -- ["goolord/alpha-nvim"] = { disable = true },
-
+      -- ["feline-nvim/feline.nvim"] = { disable = true },
       -- You can also add new plugins here as well:
       -- { "andweeb/presence.nvim" },
       -- {
@@ -96,6 +90,7 @@ local config = {
       --     require("lsp_signature").setup()
       --   end,
       -- },
+      -- { "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true }}
     },
     -- All other entries override the setup() call for default plugins
     ["null-ls"] = function(config)
@@ -104,10 +99,47 @@ local config = {
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
       config.sources = {
-        -- Set a formatter
+        -----------------------------------------------------------------------
+        -- Formatters
+        -----------------------------------------------------------------------
+        -- Lua
+        null_ls.builtins.formatting.stylua,
+        -- ESLint - JS/JS(React)/TS/TS(React)/Vue
+        null_ls.builtins.formatting.eslint,
+        -- Dart / Flutter
+        null_ls.builtins.formatting.dart_format,
+        -- Rust
+        null_ls.builtins.formatting.rustfmt,
+        -- Clang - C/C++/C#/Java/Cuda
+        null_ls.builtins.formatting.clang_format,
+        -- Ruby
         null_ls.builtins.formatting.rufo,
-        -- Set a linter
+        -----------------------------------------------------------------------
+        -----------------------------------------------------------------------
+        -- Linters
+        -----------------------------------------------------------------------
+        -- Ruby
         null_ls.builtins.diagnostics.rubocop,
+        -- ESLint
+        null_ls.builtins.diagnostics.eslint,
+        -- Make
+        null_ls.builtins.diagnostics.checkmake,
+        -- C/C++ Static Analysis
+        null_ls.builtins.diagnostics.cppcheck,
+        -- Flake8 Python
+        null_ls.builtins.diagnostics.flake8,
+        -- Golangci_lint Go
+        null_ls.builtins.diagnostics.golangci_lint,
+        -----------------------------------------------------------------------
+        -- Code Actions
+        -----------------------------------------------------------------------
+        -- ESLint
+        null_ls.builtins.code_actions.eslint,
+        -----------------------------------------------------------------------
+        -- Completion
+        -----------------------------------------------------------------------
+        -- {}
+        null_ls.builtins.completion.luasnip,
       }
       -- set up null-ls's on_attach function
       config.on_attach = function(client)
@@ -132,6 +164,22 @@ local config = {
       compile_path = vim.fn.stdpath "data" .. "/packer_compiled.lua",
     },
   },
+  ["neo-tree"] = {
+    window = {
+      width = 150,
+      mappings = {
+        ["l"] = "open",
+        ["Right"] = "open",
+        -- ["h"] = "close",
+        -- ["<C-Left>"] = "close",
+      },
+    },
+    filesystem = {
+      filtered_items = {
+        hide_dotfiles = false,
+      },
+    },
+  },
 
   -- LuaSnip Options
   luasnip = {
@@ -154,6 +202,24 @@ local config = {
           -- which-key registration table for normal mode, leader prefix
           -- ["N"] = { "<cmd>tabnew<cr>", "New Buffer" },
         },
+        ["b"] = {},
+        ["c"] = {},
+        ["e"] = {},
+        ["f"] = {},
+        ["g"] = {},
+        ["i"] = {},
+        ["m"] = {},
+        ["n"] = {},
+        ["p"] = {},
+        ["q"] = {},
+        ["r"] = {},
+        ["s"] = {},
+        ["t"] = {},
+        ["u"] = {},
+        ["v"] = {},
+        ["w"] = {},
+        ["x"] = {},
+        ["z"] = {},
       },
     },
   },
@@ -213,13 +279,27 @@ local config = {
 
   -- Diagnostics configuration (for vim.diagnostics.config({}))
   diagnostics = {
+    virtual_text = true,
+    underline = true,
   },
 
   mappings = {
     -- first key is the mode
     n = {
       -- second key is the lefthand side of the map
+      -- CTRL + S to save current buffer
       ["<C-s>"] = { ":w!<cr>", desc = "Save File" },
+      -- CTRL + Left/Right/Up/Down Navigate windows
+      ["<C-Left>"] = { "<C-w>h", noremap = true, desc = "Left Window" },
+      ["<C-Right>"] = { "<C-w>l", noremap = true, desc = "Right Window" },
+      ["<C-Up>"] = { "<C-w>k", noremap = true, desc = "Up Window" },
+      ["<C-Down>"] = { "<C-w>j", noremap = true, desc = "Down Window" },
+      -- CTRL + Left/Right Navigate buffers
+      ["<S-Left>"] = { "<cmd>bprevious<CR>", noremap = true, desc = "Left Buffer" },
+      ["<S-Right>"] = { "<cmd>bnext<CR>", noremap = true, desc = "Right Buffer" },
+    },
+    i = {
+      ["kj"] = { "<ESC>", noremap = true, desc = "Escape Insert Mode" },
     },
     t = {
       -- setting a mapping to false will disable it
@@ -230,7 +310,10 @@ local config = {
   -- This function is run last
   -- good place to configuring augroups/autocommands and custom filetypes
   polish = function()
+    -- local unmap = vim.api.nvim_del_keymap
     -- Set key binding
+    -- unmap("n", "<C-Left>")
+    -- unmap("n", "<C-Right>")
     -- Set autocommands
     vim.api.nvim_create_augroup("packer_conf", { clear = true })
     vim.api.nvim_create_autocmd("BufWritePost", {
