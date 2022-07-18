@@ -91,8 +91,51 @@ local config = {
       --   end,
       -- },
       -- { "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true }}
+      -- DAP
+      { "mfussenegger/nvim-dap" },
+      -- Flutter
+      { "akinsho/flutter-tools.nvim", requires = {
+        after = { "nvim-lsp-installer" },
+        requires = { "nvim-dap", "plenary.nvim" },
+      } },
     },
     -- All other entries override the setup() call for default plugins
+    -- Flutter
+    ["flutter-tools"] = function(config)
+      require("flutter-tools").setup {
+        flutter_path = "~/flutter/bin/flutter",
+        debugger = {
+          enabled = true,
+          run_via_dap = true,
+        },
+        outline = { auto_open = false },
+        decorations = {
+          statusline = { device = true, app_version = true },
+        },
+        widget_guides = { enabled = true, debug = true },
+        dev_log = { enabled = false, open_cmd = "tabedit" },
+        lsp = {
+          color = {
+            enabled = true,
+            background = true,
+            virtual_text = false,
+          },
+          settings = {
+            showTodos = true,
+            renameFilesWithClasses = "prompt",
+          },
+          on_attach = require("config.lsp").on_attach,
+          capabilities = require("config.lsp").capabilities,
+        },
+      }
+    end,
+    telescope = function(config)
+      local telescope = require("telescope")
+      config.extensions = {
+        "flutter",
+      }
+    end,
+    -- Null-ls
     ["null-ls"] = function(config)
       local null_ls = require "null-ls"
       -- Check supported formatters and linters
@@ -298,9 +341,9 @@ local config = {
       -- CTRL + Left/Right Navigate buffers
       ["<S-Left>"] = { "<cmd>bprevious<CR>", noremap = true, desc = "Left Buffer" },
       ["<S-Right>"] = { "<cmd>bnext<CR>", noremap = true, desc = "Right Buffer" },
-      -- Split Window
-      -- ["<C-s>h"] = { "<C-w>s", noremap = true, desc = "Split Window Horizontally" },
-      -- ["<C-s>v"] = { "<C-w>v", noremap = true, desc = "Split Window Vertically" },
+      -- Home / End
+      ["<leader>Q"] = { "<Home>", noremap = true, desc = "Home" },
+      ["<leader>E"] = { "<End>", noremap = true, desc = "End" },
     },
     i = {
       ["kj"] = { "<ESC>", noremap = true, desc = "Escape Insert Mode" },
