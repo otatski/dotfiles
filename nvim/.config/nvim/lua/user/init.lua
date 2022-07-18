@@ -288,7 +288,8 @@ local config = {
     n = {
       -- second key is the lefthand side of the map
       -- CTRL + S to save current buffer
-      ["<C-s>"] = { ":w!<cr>", desc = "Save File" },
+      -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },
+      --
       -- CTRL + Left/Right/Up/Down Navigate windows
       ["<C-Left>"] = { "<C-w>h", noremap = true, desc = "Left Window" },
       ["<C-Right>"] = { "<C-w>l", noremap = true, desc = "Right Window" },
@@ -297,6 +298,9 @@ local config = {
       -- CTRL + Left/Right Navigate buffers
       ["<S-Left>"] = { "<cmd>bprevious<CR>", noremap = true, desc = "Left Buffer" },
       ["<S-Right>"] = { "<cmd>bnext<CR>", noremap = true, desc = "Right Buffer" },
+      -- Split Window
+      -- ["<C-s>h"] = { "<C-w>s", noremap = true, desc = "Split Window Horizontally" },
+      -- ["<C-s>v"] = { "<C-w>v", noremap = true, desc = "Split Window Vertically" },
     },
     i = {
       ["kj"] = { "<ESC>", noremap = true, desc = "Escape Insert Mode" },
