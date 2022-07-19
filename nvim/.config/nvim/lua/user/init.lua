@@ -93,48 +93,33 @@ local config = {
       -- { "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true }}
       -- DAP
       { "mfussenegger/nvim-dap" },
-      -- Flutter
-      { "akinsho/flutter-tools.nvim", requires = {
+      -- Flutter programming
+      ["akinsho/flutter-tools.nvim"] = {
         after = { "nvim-lsp-installer" },
         requires = { "nvim-dap", "plenary.nvim" },
-      } },
+        config = function()
+          require("flutter-tools").setup(require "user.config.flutter-tools")
+        end,
+      },
+      ["benfowler/telescope-luasnip.nvim"] = {
+        after = "telescope.nvim",
+        module = "telescope._extensions.luasnip",
+        config = function()
+          require("telescope").load_extension "luasnip"
+        end,
+      },
+      -- ["benfowler/telescope-flutter-tools.nvim"] = {
+      --   after = "telescope.nvim",
+      --   module = "telescope._extensions.flutter-tools",
+      --   config = function()
+      --     require("telescope").load_extension "flutter"
+      --   end,
+      -- },
     },
-    -- All other entries override the setup() call for default plugins
-    -- Flutter
-    ["flutter-tools"] = function(config)
-      require("flutter-tools").setup {
-        flutter_path = "~/flutter/bin/flutter",
-        debugger = {
-          enabled = true,
-          run_via_dap = true,
-        },
-        outline = { auto_open = false },
-        decorations = {
-          statusline = { device = true, app_version = true },
-        },
-        widget_guides = { enabled = true, debug = true },
-        dev_log = { enabled = false, open_cmd = "tabedit" },
-        lsp = {
-          color = {
-            enabled = true,
-            background = true,
-            virtual_text = false,
-          },
-          settings = {
-            showTodos = true,
-            renameFilesWithClasses = "prompt",
-          },
-          on_attach = require("config.lsp").on_attach,
-          capabilities = require("config.lsp").capabilities,
-        },
-      }
-    end,
-    telescope = function(config)
-      local telescope = require("telescope")
-      config.extensions = {
-        "flutter",
-      }
-    end,
+
+    -- telescope = function(config)
+    --   config.extension { "flutter" }
+    -- end,
     -- Null-ls
     ["null-ls"] = function(config)
       local null_ls = require "null-ls"
