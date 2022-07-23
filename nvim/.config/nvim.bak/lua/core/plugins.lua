@@ -24,10 +24,7 @@ local astro_plugins = {
   },
 
   -- Neovim UI Enhancer
-  ["stevearc/dressing.nvim"] = {
-    event = "VimEnter",
-    config = function() require "configs.dressing" end,
-  },
+  ["MunifTanjim/nui.nvim"] = { module = "nui" },
 
   -- Cursorhold fix
   ["antoinemadec/FixCursorHold.nvim"] = {
@@ -61,7 +58,7 @@ local astro_plugins = {
     branch = "v2.x",
     module = "neo-tree",
     cmd = "Neotree",
-    requires = { { "MunifTanjim/nui.nvim", module = "nui" } },
+    requires = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
     setup = function() vim.g.neo_tree_remove_legacy_commands = true end,
     config = function() require "configs.neo-tree" end,
   },
