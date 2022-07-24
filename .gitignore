@@ -1,0 +1,6 @@
+/* Editor Files  */
+.vscode
+.idea
+
+/*Backup Files*/
+*.bak

@@ -3,7 +3,7 @@ local config = {
   -- Configure AstroNvim updates
   updater = {
     remote = "origin", -- remote to use
-    channel = "nightly", -- "stable" or "nightly"
+    channel = "stable", -- "stable" or "nightly"
     version = "latest", -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
     branch = "main", -- branch name (NIGHTLY ONLY)
     commit = nil, -- commit hash (NIGHTLY ONLY)
@@ -93,28 +93,23 @@ local config = {
       -- { "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true }}
       -- DAP
       { "mfussenegger/nvim-dap" },
+      -- ["nvim-lualine/lualine.nvim"] = {
+      --   requires = { "kyazdani42/nvim-web-devicons" },
+      --   config = function() require("lualine").setup(require "user.config.lualine") end,
+
+      { "iamcco/markdown-preview.nvim", run = function() vim.fn["mkdp#util#install"]() end },
+      -- },
       -- Flutter programming
       ["akinsho/flutter-tools.nvim"] = {
         after = { "nvim-lsp-installer" },
         requires = { "nvim-dap", "plenary.nvim" },
-        config = function()
-          require("flutter-tools").setup(require "user.config.flutter-tools")
-        end,
+        config = function() require("flutter-tools").setup(require "user.config.flutter-tools") end,
       },
       ["benfowler/telescope-luasnip.nvim"] = {
         after = "telescope.nvim",
         module = "telescope._extensions.luasnip",
-        config = function()
-          require("telescope").load_extension "luasnip"
-        end,
+        config = function() require("telescope").load_extension "luasnip" end,
       },
-      -- ["benfowler/telescope-flutter-tools.nvim"] = {
-      --   after = "telescope.nvim",
-      --   module = "telescope._extensions.flutter-tools",
-      --   config = function()
-      --     require("telescope").load_extension "flutter"
-      --   end,
-      -- },
     },
 
     -- telescope = function(config)
@@ -329,6 +324,11 @@ local config = {
       -- Home / End
       ["<leader>Q"] = { "<Home>", noremap = true, desc = "Home" },
       ["<leader>E"] = { "<End>", noremap = true, desc = "End" },
+      -- ALT + Left/Right/Up/Down Resize Windows
+      ["<A-Up>"] = { "<cmd>resize -2<CR>", desc = "Resize split up" },
+      ["<A-Down>"] = { "<cmd>resize +2<CR>", desc = "Resize split down" },
+      ["<A-Left>"] = { "<cmd>vertical resize -2<CR>", desc = "Resize split left" },
+      ["<A-Right>"] = { "<cmd>vertical resize +2<CR>", desc = "Resize split right" },
     },
     i = {
       ["kj"] = { "<ESC>", noremap = true, desc = "Escape Insert Mode" },
