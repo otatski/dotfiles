@@ -1,6 +1,11 @@
-/* Editor Files  */
+# Editor Files
 .vscode
 .idea
 
-/*Backup Files*/
+# Backup Files
 *.bak
+
+# Astrovim
+~/dotfiles/nvim
+nvim/.config/nvim/.github
+nvim/.config/nvim/.gitignore
