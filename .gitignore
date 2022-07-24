@@ -6,6 +6,4 @@
 *.bak
 
 # Astrovim
-~/dotfiles/nvim
-nvim/.config/nvim/.github
-nvim/.config/nvim/.gitignore
+~/dotfiles/nvim/.config
