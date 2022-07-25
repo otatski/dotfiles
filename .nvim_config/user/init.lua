@@ -92,21 +92,15 @@ local config = {
       -- },
       -- DAP
       { "mfussenegger/nvim-dap" },
-<<<<<<< HEAD
-      -- ["nvim-lualine/lualine.nvim"] = {
-      --   requires = { "kyazdani42/nvim-web-devicons" },
-      --   config = function() require("lualine").setup(require "user.config.lualine") end,
-
-      { "iamcco/markdown-preview.nvim", run = function() vim.fn["mkdp#util#install"]() end },
-      -- },
-=======
 
       -- Lualine
       ["nvim-lualine/lualine.nvim"] = {
         requires = { "kyazdani42/nvim-web-devicons", opt = true },
         config = function() require("lualine").setup() end,
       },
->>>>>>> adc19dc6b9a3efc4de96cc2f9964f94b3c0e1d3c
+
+      -- Markdown Priview
+      { "iamcco/markdown-preview.nvim", run = function() vim.fn["mkdp#util#install"]() end },
       -- Flutter programming
       ["akinsho/flutter-tools.nvim"] = {
         after = { "nvim-lsp-installer" },
