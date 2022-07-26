@@ -6,4 +6,4 @@
 *.bak
 
 # Astrovim
-~/dotfiles/nvim/.config
+nvim/.config/*
