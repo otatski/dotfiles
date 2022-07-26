@@ -1,0 +1,9 @@
+# Editor Files
+.vscode
+.idea
+
+# Backup Files
+*.bak
+
+# Astrovim
+~/dotfiles/nvim/.config
