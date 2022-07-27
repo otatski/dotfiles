@@ -81,6 +81,7 @@ local config = {
       -- You can disable default plugins as follows:
       -- ["goolord/alpha-nvim"] = { disable = true },
       ["feline-nvim/feline.nvim"] = { disable = true },
+      [""] = { disable = true },
       -- You can also add new plugins here as well:
       -- { "andweeb/presence.nvim" },
       -- {
@@ -92,7 +93,6 @@ local config = {
       -- },
       -- DAP
       { "mfussenegger/nvim-dap" },
-
       -- Lualine
       ["nvim-lualine/lualine.nvim"] = {
         requires = { "kyazdani42/nvim-web-devicons", opt = true },
@@ -127,6 +127,8 @@ local config = {
         -----------------------------------------------------------------------
         -- Formatters
         -----------------------------------------------------------------------
+        -- Prettier
+        -- null_ls.builtins.formatting.prettier,
         -- Lua
         null_ls.builtins.formatting.stylua,
         -- ESLint - JS/JS(React)/TS/TS(React)/Vue
@@ -331,6 +333,8 @@ local config = {
       ["<A-Down>"] = { "<cmd>resize +2<CR>", desc = "Resize split down" },
       ["<A-Left>"] = { "<cmd>vertical resize -2<CR>", desc = "Resize split left" },
       ["<A-Right>"] = { "<cmd>vertical resize +2<CR>", desc = "Resize split right" },
+      -- Delete entire line without copying
+      ["<C-y>"] = { '"_dd', noremap = true, desc = "Delete line" },
     },
     i = {
       ["kj"] = { "<ESC>", noremap = true, desc = "Escape Insert Mode" },
