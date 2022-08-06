@@ -115,7 +115,7 @@ alias dos2unix="dos2unix"
 alias flutter="/home/$USER/flutter/bin/flutter"
 alias dart="/home/$USER/flutter/bin/dart"
 alias dot="/home/$USER/dotfiles"
-alias nvz="nv /home/$USER/.zshrc"
+alias nvz="nv /home/$USER/dotfiles/.zshrc"
 
 # EXPORTS
 ## Flutter and Dart
