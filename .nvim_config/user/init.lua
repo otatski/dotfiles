@@ -18,19 +18,19 @@ local config = {
   },
 
   -- Set colorscheme
-  colorscheme = "default_theme",
+  colorscheme = "duskfox",
 
   -- Override highlight groups in any theme
   highlights = {
     -- duskfox = { -- a table of overrides
-    --   Normal = { bg = "#000000" },
+    -- Normal = { bg = "#000000", fg = "#cdcecf" },
     -- },
-    default_theme = function(highlights) -- or a function that returns one
-      local C = require "default_theme.colors"
-
-      highlights.Normal = { fg = C.fg, bg = C.bg }
-      return highlights
-    end,
+    --
+    -- default_theme = function(highlights) -- or a function that returns one
+    -- local C = require "default_theme.colors"
+    -- highlights.Normal = { fg = C.fg, bg = C.bg }
+    -- return highlights
+    -- end,
   },
 
   -- set vim options here (vim.<first_key>.<second_key> =  value)
@@ -81,7 +81,6 @@ local config = {
       -- You can disable default plugins as follows:
       -- ["goolord/alpha-nvim"] = { disable = true },
       ["feline-nvim/feline.nvim"] = { disable = true },
-      [""] = { disable = true },
       -- You can also add new plugins here as well:
       -- { "andweeb/presence.nvim" },
       -- {
@@ -91,8 +90,13 @@ local config = {
       --     require("lsp_signature").setup()
       --   end,
       -- },
+      -- Nightfox Theme
+      ["EdenEast/nightfox.nvim"] = {
+        config = require "user.config.themes.nightfox",
+      },
       -- DAP
       { "mfussenegger/nvim-dap" },
+
       -- Lualine
       ["nvim-lualine/lualine.nvim"] = {
         requires = { "kyazdani42/nvim-web-devicons", opt = true },
@@ -127,8 +131,6 @@ local config = {
         -----------------------------------------------------------------------
         -- Formatters
         -----------------------------------------------------------------------
-        -- Prettier
-        -- null_ls.builtins.formatting.prettier,
         -- Lua
         null_ls.builtins.formatting.stylua,
         -- ESLint - JS/JS(React)/TS/TS(React)/Vue
@@ -251,21 +253,6 @@ local config = {
     },
   },
 
-  -- CMP Source Priorities
-  -- modify here the priorities of default cmp sources
-  -- higher value == higher priority
-  -- The value can also be set to a boolean for disabling default sources:
-  -- false == disabled
-  -- true == 1000
-  cmp = {
-    source_priority = {
-      nvim_lsp = 1000,
-      luasnip = 750,
-      buffer = 500,
-      path = 250,
-    },
-  },
-
   -- Extend LSP configuration
   lsp = {
     -- enable servers that you already have installed without lsp-installer
@@ -333,8 +320,6 @@ local config = {
       ["<A-Down>"] = { "<cmd>resize +2<CR>", desc = "Resize split down" },
       ["<A-Left>"] = { "<cmd>vertical resize -2<CR>", desc = "Resize split left" },
       ["<A-Right>"] = { "<cmd>vertical resize +2<CR>", desc = "Resize split right" },
-      -- Delete entire line without copying
-      ["<C-y>"] = { '"_dd', noremap = true, desc = "Delete line" },
     },
     i = {
       ["kj"] = { "<ESC>", noremap = true, desc = "Escape Insert Mode" },
