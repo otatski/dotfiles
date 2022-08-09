@@ -99,7 +99,7 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # Set colors for LS_COLORS
-eval `dircolors ~/.dircolors`
+# eval `dircolors ~/.dircolors`
 
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
@@ -115,7 +115,7 @@ alias dos2unix="dos2unix"
 alias flutter="/home/$USER/flutter/bin/flutter"
 alias dart="/home/$USER/flutter/bin/dart"
 alias dot="/home/$USER/dotfiles"
-alias nvz="nv /home/$USER/dotfiles/.zshrc"
+alias nvz="nv /home/$USER/dotfiles/zsh/.zshrc"
 
 # EXPORTS
 ## Flutter and Dart
