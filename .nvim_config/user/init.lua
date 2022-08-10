@@ -18,19 +18,25 @@ local config = {
   },
 
   -- Set colorscheme
-  colorscheme = "duskfox",
+  colorscheme = "default_theme",
 
   -- Override highlight groups in any theme
   highlights = {
     -- duskfox = { -- a table of overrides
-    -- Normal = { bg = "#000000", fg = "#cdcecf" },
+    -- Normal = { bg = "#ffffff", fg = "#cdcecf" },
     -- },
     --
-    -- default_theme = function(highlights) -- or a function that returns one
-    -- local C = require "default_theme.colors"
-    -- highlights.Normal = { fg = C.fg, bg = C.bg }
-    -- return highlights
-    -- end,
+    default_theme = function(hi) -- or a function that returns one
+      local C = require "default_theme.colors"
+      hi.Normal = { fg = C.fg, bg = C.none, ctermbg = C.none }
+      hi.CursorColumn = { cterm = {}, ctermbg = C.none, ctermfg = C.none }
+      -- hi.CursorLine = { cterm = {}, ctermbg = C.none, ctermfg = C.none }
+      -- hi.CursorLineNr = { cterm = {}, ctermbg = C.none, ctermfg = C.none }
+      -- hi.LineNr = {}
+      -- hi.SignColumn = {}
+      -- hi.StatusLine = {}
+      return hi
+    end,
   },
 
   -- set vim options here (vim.<first_key>.<second_key> =  value)
@@ -65,6 +71,7 @@ local config = {
     },
     plugins = { -- enable or disable extra plugin highlighting
       -- ["which-key"] = true,
+      ["neo-tree"] = false,
     },
   },
 
@@ -91,9 +98,9 @@ local config = {
       --   end,
       -- },
       -- Nightfox Theme
-      ["EdenEast/nightfox.nvim"] = {
-        config = require "user.config.themes.nightfox",
-      },
+      -- ["EdenEast/nightfox.nvim"] = {
+      -- config = require "user.config.themes.nightfox",
+      -- },
       -- DAP
       { "mfussenegger/nvim-dap" },
 
@@ -118,6 +125,9 @@ local config = {
       },
     },
 
+    ["notify"] = {
+      background_colour = "#000000",
+    },
     -- telescope = function(config)
     --   config.extension { "flutter" }
     -- end,
@@ -192,20 +202,21 @@ local config = {
     packer = {
       compile_path = vim.fn.stdpath "data" .. "/packer_compiled.lua",
     },
-  },
-  ["neo-tree"] = {
-    window = {
-      width = 150,
-      mappings = {
-        ["l"] = "open",
-        ["Right"] = "open",
-        -- ["h"] = "close",
-        -- ["<C-Left>"] = "close",
+    ["neo-tree"] = {
+      window = {
+        width = 50,
+        mappings = {
+          ["l"] = "open",
+          ["<Right>"] = "open",
+          ["h"] = "close_node",
+          ["<Left>"] = "close_node",
+        },
       },
-    },
-    filesystem = {
-      filtered_items = {
-        hide_dotfiles = false,
+      filesystem = {
+        filtered_items = {
+          visible = true,
+          hide_dotfiles = false,
+        },
       },
     },
   },
