@@ -39,6 +39,14 @@ local config = {
     end,
   },
 
+  header =
+{"___  ___      _       _             _   _ _           ",
+"|  \\/  |     | |     | |           | | | (_)          ",
+"| .  . | __ _| |_ ___| |_ _ __ ___ | | | |_ _ __ ___ ",
+"| |\\/| |/ _` | __/ __| __| '__/ _ \\| | | | | '_ ` _ \\ ",
+"| |  | | (_| | |_\\__ \\ |_| | | (_) \\ \\_/ / | | | | | |",
+"\\_|  |_/\\__,_|\\__|___/\\__|_|  \\___/ \\___/|_|_| |_| |_|",
+},
   -- set vim options here (vim.<first_key>.<second_key> =  value)
   options = {
     opt = {
@@ -113,11 +121,11 @@ local config = {
       -- Markdown Priview
       { "iamcco/markdown-preview.nvim", run = function() vim.fn["mkdp#util#install"]() end },
       -- Flutter programming
-      ["akinsho/flutter-tools.nvim"] = {
-        after = { "nvim-lsp-installer" },
-        requires = { "nvim-dap", "plenary.nvim" },
-        config = function() require("flutter-tools").setup(require "user.config.flutter-tools") end,
-      },
+      -- ["akinsho/flutter-tools.nvim"] = {
+        -- after = { "nvim-lsp-installer" },
+        -- requires = { "nvim-dap", "plenary.nvim" },
+        -- config = function() require("flutter-tools").setup(require "user.config.flutter-tools") end,
+      -- },
       ["benfowler/telescope-luasnip.nvim"] = {
         after = "telescope.nvim",
         module = "telescope._extensions.luasnip",
