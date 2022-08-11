@@ -28,6 +28,7 @@ local config = {
     --
     default_theme = function(hi) -- or a function that returns one
       local C = require "default_theme.colors"
+      -- C.fg = "#7d7bff"
       hi.Normal = { fg = C.fg, bg = C.none, ctermbg = C.none }
       hi.CursorColumn = { cterm = {}, ctermbg = C.none, ctermfg = C.none }
       -- hi.CursorLine = { cterm = {}, ctermbg = C.none, ctermfg = C.none }
@@ -39,14 +40,16 @@ local config = {
     end,
   },
 
-  header =
-{"___  ___      _       _             _   _ _           ",
-"|  \\/  |     | |     | |           | | | (_)          ",
-"| .  . | __ _| |_ ___| |_ _ __ ___ | | | |_ _ __ ___ ",
-"| |\\/| |/ _` | __/ __| __| '__/ _ \\| | | | | '_ ` _ \\ ",
-"| |  | | (_| | |_\\__ \\ |_| | | (_) \\ \\_/ / | | | | | |",
-"\\_|  |_/\\__,_|\\__|___/\\__|_|  \\___/ \\___/|_|_| |_| |_|",
-},
+  header = require "user.config.header",
+
+  -- header = {
+  --   "___  ___      _       _             _   _ _           ",
+  --   "|  \\/  |     | |     | |           | | | (_)          ",
+  --   "| .  . | __ _| |_ ___| |_ _ __ ___ | | | |_ _ __ ___ ",
+  --   "| |\\/| |/ _` | __/ __| __| '__/ _ \\| | | | | '_ ` _ \\ ",
+  --   "| |  | | (_| | |_\\__ \\ |_| | | (_) \\ \\_/ / | | | | | |",
+  --   "\\_|  |_/\\__,_|\\__|___/\\__|_|  \\___/ \\___/|_|_| |_| |_|",
+  -- },
   -- set vim options here (vim.<first_key>.<second_key> =  value)
   options = {
     opt = {
@@ -122,9 +125,9 @@ local config = {
       { "iamcco/markdown-preview.nvim", run = function() vim.fn["mkdp#util#install"]() end },
       -- Flutter programming
       -- ["akinsho/flutter-tools.nvim"] = {
-        -- after = { "nvim-lsp-installer" },
-        -- requires = { "nvim-dap", "plenary.nvim" },
-        -- config = function() require("flutter-tools").setup(require "user.config.flutter-tools") end,
+      -- after = { "nvim-lsp-installer" },
+      -- requires = { "nvim-dap", "plenary.nvim" },
+      -- config = function() require("flutter-tools").setup(require "user.config.flutter-tools") end,
       -- },
       ["benfowler/telescope-luasnip.nvim"] = {
         after = "telescope.nvim",
