@@ -111,11 +111,14 @@ source $ZSH/oh-my-zsh.sh
 alias sz="source /home/$USER/.zshrc"
 alias nv="nvim"
 alias dev="cd /home/$USER/development"
+alias work="cd /home/$USER/development/work"
+alias personal="cd /home/$USER/development/personal"
 alias dos2unix="dos2unix"
 alias flutter="/home/$USER/flutter/bin/flutter"
 alias dart="/home/$USER/flutter/bin/dart"
 alias dot="/home/$USER/dotfiles"
 alias nvz="nv /home/$USER/dotfiles/zsh/.zshrc"
+alias libuv="libuv1"
 
 # EXPORTS
 ## Flutter and Dart
