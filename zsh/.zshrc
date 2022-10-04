@@ -110,6 +110,7 @@ source $ZSH/oh-my-zsh.sh
 # ALIASES
 alias sz="source /home/$USER/.zshrc"
 alias nv="nvim"
+alias doc="cd $HOME/Documents"
 alias dev="cd /home/$USER/development"
 alias work="cd /home/$USER/development/work"
 alias personal="cd /home/$USER/development/personal"
@@ -133,10 +134,19 @@ export PATH="$PATH:/usr/local/go/bin"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+# Vale
+export PATH="$PATH:$HOME/vale"
 
 
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# bun completions
+[ -s "/home/mat/.bun/_bun" ] && source "/home/mat/.bun/_bun"
+
+
