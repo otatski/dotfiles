@@ -120,6 +120,7 @@ alias dart="/home/$USER/flutter/bin/dart"
 alias dot="/home/$USER/dotfiles"
 alias nvz="nv /home/$USER/dotfiles/zsh/.zshrc"
 alias libuv="libuv1"
+alias nvconf="nv $HOME/dotfiles/nvim/.config/nvim"
 
 # EXPORTS
 ## Flutter and Dart
@@ -139,7 +140,8 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 # Vale
 export PATH="$PATH:$HOME/vale"
-
+# Helix
+export PATH="$HOME/.cargo/bin:$PATH"
 
 
 

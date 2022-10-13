@@ -1,0 +1,46 @@
+# A POS tag dictionary that's used as an addition (or as a fix) to catalan.dict
+# These words are candidates to be added (or fixed) in catalan.dict in the future
+# File Encoding: UTF-8
+# Format: fullform baseform postags (tab separated)
+########## Dictionary fixes ##########
+########## Additions ##########
+ACB	ACB	NPFSO00
+Baikal	Baikal	NPMSG00
+FCB	FCB	NPMSO00
+ICF	ICF	NPCSO00
+IVACE	IVACE	NPMSO00
+Ibarz	Ibarz	NPCNSP0
+Magris	Magris	NPCNSP0
+Malraux	Malraux	NPCNSP0
+Sanders	Sanders	NPCNSP0
+Sciascia	Sciascia	NPCNSP0
+absolutíssim	absolutíssim	AQAMS0
+absolutíssima	absolutíssim	AQAFS0
+absolutíssimes	absolutíssim	AQAFP0
+absolutíssims	absolutíssim	AQAMP0
+antiestablishment	antiestablishment	AQ0CN0
+aüixador	aüixador	NCMS000
+aüixadors	aüixador	NCMP000
+aüixament	aüixament	NCMS000
+aüixaments	aüixament	NCMP000
+aüixons	aüixó	NCMP000
+aüixó	aüixó	NCMS000
+chaise-longue	chaise-longue	NCFN000
+exfeixista	exfeixista	AQ0CS0
+exfeixistes	exfeixista	AQ0CP0
+pseudoreferèndum	pseudoreferèndum	NCMS000
+pseudoreferèndums	pseudoreferèndum	NCMP000
+redoníssim	redoníssim	AQAMS0
+redoníssima	redoníssim	AQAFS0
+redoníssimes	redoníssim	AQAFP0
+redoníssims	redoníssim	AQAMP0
+rodoníssim	rodoníssim	AQAMS0
+rodoníssima	rodoníssim	AQAFS0
+rodoníssimes	rodoníssim	AQAFP0
+rodoníssims	rodoníssim	AQAMP0
+royalties	royalty	NCMP000
+selfie	selfie	NCCS000
+selfies	selfie	NCCP000
+tenor	tenor	AQ0CS0
+tenors	tenor	AQ0CP0
+woke	woke	AQ0CN0
