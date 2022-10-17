@@ -108,19 +108,37 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # ALIASES
+# Source this file 
 alias sz="source /home/$USER/.zshrc"
+# Open nvim alias
 alias nv="nvim"
+# Change directory to Documents directory
 alias doc="cd $HOME/Documents"
+# Change directory to development directory
 alias dev="cd /home/$USER/development"
+# Change directory to work development directory
 alias work="cd /home/$USER/development/work"
+# Change directory to personal development directory
 alias personal="cd /home/$USER/development/personal"
+# dos2unix alias - Needed for this to work /shrug
 alias dos2unix="dos2unix"
+# Flutter alias from Flutter directory
 alias flutter="/home/$USER/flutter/bin/flutter"
+# Dart alias from Flutter directory
 alias dart="/home/$USER/flutter/bin/dart"
-alias dot="/home/$USER/dotfiles"
+# Change directory to dotfiles
+alias dot="cd /home/$USER/dotfiles"
+# Open this file in nvim
 alias nvz="nv /home/$USER/dotfiles/zsh/.zshrc"
+# Needed to fix some random bug /shrug
 alias libuv="libuv1"
+# Open nvim configuration in nvim
 alias nvconf="nv $HOME/dotfiles/nvim/.config/nvim"
+# CAC - pcsd service
+alias cacup="service pcsd start"
+alias cacrestart="service pcsd restart"
+alias cacdown="service pcsd stop"
+
 
 # EXPORTS
 ## Flutter and Dart
