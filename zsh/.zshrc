@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -135,9 +135,9 @@ alias libuv="libuv1"
 # Open nvim configuration in nvim
 alias nvconf="nv $HOME/dotfiles/nvim/.config/nvim"
 # CAC - pcsd service
-alias cacup="service pcsd start"
-alias cacrestart="service pcsd restart"
-alias cacdown="service pcsd stop"
+alias cacup="service pcscd start"
+alias cacrestart="service pcscd restart"
+alias cacdown="service pcscd stop"
 
 
 # EXPORTS
@@ -160,13 +160,16 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$PATH:$HOME/vale"
 # Helix
 export PATH="$HOME/.cargo/bin:$PATH"
+# WASM bindgen
+export PATH="$PATH:$HOME/.cache/.wasm-pack/.wasm-bindgen-cargo-install-0.2.83/bin"
 
 
+# bun completions
+[ -s "/home/mat/.bun/_bun" ] && source "/home/mat/.bun/_bun"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# bun completions
-[ -s "/home/mat/.bun/_bun" ] && source "/home/mat/.bun/_bun"
+
 
 
