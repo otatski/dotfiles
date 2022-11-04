@@ -93,7 +93,7 @@ local config = {
 			bg = "#1e222a",
 		},
 		highlights = function(hl) -- or a function that returns a new table of colors to set
-			local C = require "default_theme.colors"
+			local C = require("default_theme.colors")
 
 			hl.Normal = { fg = C.fg, bg = C.bg }
 
@@ -104,7 +104,6 @@ local config = {
 			hl.DiagnosticWarn.italic = true
 			hl.Normal = { fg = C.fg, bg = C.none, ctermbg = C.none }
 			hl.CursorColumn = { cterm = {}, ctermbg = C.none, ctermfg = C.none }
-
 
 			return hl
 		end,
@@ -252,25 +251,19 @@ local config = {
 		init = {
 			-- You can disable default plugins as follows:
 			-- ["goolord/alpha-nvim"] = { disable = true },
-
-			-- You can also add new plugins here as well:
-			-- Add plugins, the packer syntax without the "use"
-			-- { "andweeb/presence.nvim" },
-			-- {
-			--   "ray-x/lsp_signature.nvim",
-			--   event = "BufRead",
-			--   config = function()
-			--     require("lsp_signature").setup()
-			--   end,
-			-- },
-
-			-- We also support a key value style plugin definition similar to NvChad:
-			-- ["ray-x/lsp_signature.nvim"] = {
-			--   event = "BufRead",
-			--   config = function()
-			--     require("lsp_signature").setup()
-			--   end,
-			-- },
+			--
+			-- Disabled Plugins
+			--
+			-- Nvim LSP
+			-- ["neovim/nvim-lspconfig"] = { disable = true },
+			-- Mason LSP
+			-- ["williamboman/mason.nvim"] = { disable = true },
+			-- ["williamboman/mason-lspconfig.nvim"] = { disable = true },
+			-- ["williamboman/mason-null-ls.nvim"] = { disable = true },
+			-- ["jayp0521/mason-null-ls.nvim"] = { disable = true },
+			--
+			-- Added Plugins
+			--
 			-- Copilot
 			-- { "github/copilot.vim" },
 			["zbirenbaum/copilot.lua"] = {
@@ -285,6 +278,23 @@ local config = {
 					})
 				end,
 			},
+			-- Rust Tools
+			["simrat39/rust-tools.nvim"] = {
+				config = function()
+					require("rust-tools").setup({
+						server = {
+							on_attach = function(_, bufnr)
+								-- Hover actions
+								vim.keymap.set("n", "K", "<cmd>RustHoverActions<cr>", { buffer = bufnr })
+								-- Code action groups
+								vim.keymap.set("n", "<leader>a", "<cmd>RustRunnables<cr>", { buffer = bufnr })
+							end,
+						},
+					})
+				end,
+			},
+			-- Planary
+			-- { "nvim-lua/plenary.nvim" },
 			-- DAP
 			{ "mfussenegger/nvim-dap" },
 			-- Trouble
