@@ -206,6 +206,8 @@ local config = {
 			-- CTRL + S to save current buffer
 			-- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },
 			--
+			-- gd to go to definition
+			["gd"] = { "<cmd>lua vim.lsp.buf.definition()<cr>", noremap = true, desc = "Go to Definition" },
 			-- CTRL + Left/Right/Up/Down Navigate windows
 			["<C-Left>"] = { "<C-w>h", noremap = true, desc = "Left Window" },
 			["<C-Right>"] = { "<C-w>l", noremap = true, desc = "Right Window" },
