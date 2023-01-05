@@ -246,6 +246,11 @@ local config = {
 			-- setting a mapping to false will disable it
 			-- ["<esc>"] = false,
 		},
+		v = {
+			-- ["<"] = { "<gv", noremap = true, desc = "Reindent" },
+			-- [">"] = { ">gv", noremap = true, desc = "Reindent" },
+			["gq"] = { "<cmd>lua vim.lsp.buf.format<cr>", noremap = true, desc = "Format", async = true },
+		},
 	},
 
 	-- Configure plugins
