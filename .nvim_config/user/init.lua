@@ -4,9 +4,6 @@
 -- You can think of a Lua "table" as a dictionary like data structure the
 -- normal format is "key = value". These also handle array like data structures
 -- where a value with no key simply has an implicit numeric key
-
--- local trouble = require("trouble.providers.telescope")
-
 local config = {
 
 	-- Configure AstroNvim updates
@@ -41,26 +38,22 @@ local config = {
 		-- },
 	},
 
-	-- set vim options here (vim.<first_key>.<second_key> =  value)
+	-- set vim options here (vim.<first_key>.<second_key> = value)
 	options = {
 		opt = {
 			-- set to true or false etc.
 			relativenumber = true, -- sets vim.opt.relativenumber
 			number = true, -- sets vim.opt.number
 			spell = false, -- sets vim.opt.spell
-			signcolumn = "yes", -- sets vim.opt.signcolumn to auto
+			signcolumn = "auto", -- sets vim.opt.signcolumn to auto
 			wrap = false, -- sets vim.opt.wrap
-			colorcolumn = "80",
-			ignorecase = true,
-			mouse = "a",
-			showtabline = 0,
-			hlsearch = false,
-			expandtab = true,
-			shiftwidth = 4,
-			tabstop = 4,
-			cursorline = true,
-			conceallevel = 0,
-			showmode = true,
+			colorcolumn = "80", -- sets vim.opt.colorcolumn to 80
+			ignorecase = true, -- sets vim.opt.ignorecase
+			expandtab = true, -- sets vim.opt.expandtab
+			shiftwidth = 4, -- sets vim.opt.shiftwidth
+			tabstop = 4, -- sets vim.opt.tabstop
+			cursorline = true, -- sets vim.opt.cursorline
+			showmode = true, -- sets vim.opt.showmode
 		},
 		g = {
 			mapleader = " ", -- sets vim.g.mapleader
@@ -70,6 +63,8 @@ local config = {
 			diagnostics_enabled = true, -- enable diagnostics at start
 			status_diagnostics_enabled = true, -- enable diagnostics in statusline
 			icons_enabled = true, -- disable icons in the UI (disable if no nerd font is available, requires :PackerSync after changing)
+			ui_notifications_enabled = true, -- disable notifications when toggling UI elements
+			heirline_bufferline = false, -- enable new heirline based bufferline (requires :PackerSync after changing)
 		},
 	},
 	-- If you need more control, you can use the function()...end notation
@@ -83,7 +78,19 @@ local config = {
 	-- end,
 
 	-- Set dashboard header
-	header = require("user.config.header"),
+	header = {
+		" █████  ███████ ████████ ██████   ██████",
+		"██   ██ ██         ██    ██   ██ ██    ██",
+		"███████ ███████    ██    ██████  ██    ██",
+		"██   ██      ██    ██    ██   ██ ██    ██",
+		"██   ██ ███████    ██    ██   ██  ██████",
+		" ",
+		"    ███    ██ ██    ██ ██ ███    ███",
+		"    ████   ██ ██    ██ ██ ████  ████",
+		"    ██ ██  ██ ██    ██ ██ ██ ████ ██",
+		"    ██  ██ ██  ██  ██  ██ ██  ██  ██",
+		"    ██   ████   ████   ██ ██      ██",
+	},
 
 	-- Default theme configuration
 	default_theme = {
@@ -102,8 +109,6 @@ local config = {
 			hl.DiagnosticHint.italic = true
 			hl.DiagnosticInfo.italic = true
 			hl.DiagnosticWarn.italic = true
-			hl.Normal = { fg = C.fg, bg = C.none, ctermbg = C.none }
-			hl.CursorColumn = { cterm = {}, ctermbg = C.none, ctermfg = C.none }
 
 			return hl
 		end,
@@ -118,7 +123,7 @@ local config = {
 			hop = false,
 			indent_blankline = true,
 			lightspeed = false,
-			["neo-tree"] = false,
+			["neo-tree"] = true,
 			notify = true,
 			["nvim-tree"] = false,
 			["nvim-web-devicons"] = true,
@@ -139,6 +144,13 @@ local config = {
 
 	-- Extend LSP configuration
 	lsp = {
+		-- Skip Setup
+		skip_setup = {
+			"rust_analyzer",
+			"dartls",
+			"tsserver",
+			"clangd",
+		},
 		-- enable servers that you already have installed without mason
 		servers = {
 			-- "pyright"
@@ -191,6 +203,24 @@ local config = {
 			--     },
 			--   },
 			-- },
+			--
+			-- Dartls Server Settings
+			dartls = {
+				-- any changes you want to make to the LSP setup, for example
+				color = {
+					enabled = true,
+				},
+				settings = {
+					showTodos = true,
+					completeFunctionCalls = true,
+					renameFilesWithClasses = "prompt",
+				},
+			},
+			clangd = {
+				capabilities = {
+					offsetEncoding = "utf-8",
+				},
+			},
 		},
 	},
 
@@ -203,53 +233,58 @@ local config = {
 		-- first key is the mode
 		n = {
 			-- second key is the lefthand side of the map
-			-- CTRL + S to save current buffer
-			-- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },
-			--
-			-- gd to go to definition
-			["gd"] = { "<cmd>lua vim.lsp.buf.definition()<cr>", noremap = true, desc = "Go to Definition" },
-			-- CTRL + Left/Right/Up/Down Navigate windows
-			["<C-Left>"] = { "<C-w>h", noremap = true, desc = "Left Window" },
-			["<C-Right>"] = { "<C-w>l", noremap = true, desc = "Right Window" },
-			["<C-Up>"] = { "<C-w>k", noremap = true, desc = "Up Window" },
-			["<C-Down>"] = { "<C-w>j", noremap = true, desc = "Down Window" },
-			-- CTRL + Left/Right Navigate buffers
-			["<S-Left>"] = { "<cmd>bprevious<CR>", noremap = true, desc = "Left Buffer" },
-			["<S-Right>"] = { "<cmd>bnext<CR>", noremap = true, desc = "Right Buffer" },
+			-- mappings seen under group name "Buffer"
+			["<leader>bb"] = { "<cmd>tabnew<cr>", desc = "New tab" },
+			["<leader>bc"] = { "<cmd>BufferLinePickClose<cr>", desc = "Pick to close" },
+			["<leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },
+			["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
+			-- CTRL + Left/Right/Up/Down to Navigate Windows
+			["<C-Left>"] = { "<C-W>h", desc = "Navigate Window Left" },
+			["<C-Right>"] = { "<C-W>l", desc = "Navigate Window Right" },
+			["<C-Up>"] = { "<C-W>k", desc = "Navigate Window Up" },
+			["<C-Down>"] = { "<C-W>j", desc = "Navigate Window Down" },
+			-- SHIFT + Left/Right to Navigate Buffers
+			["<S-Left>"] = { "<cmd>BufferLineCyclePrev<cr>", desc = "Navigate Buffer Left" },
+			["<S-Right>"] = { "<cmd>BufferLineCycleNext<cr>", desc = "Navigate Buffer Right" },
 			-- Home / End
-			["<leader>Q"] = { "<Home>", noremap = true, desc = "Home" },
-			["<leader>E"] = { "<End>", noremap = true, desc = "End" },
-			-- ALT + Left/Right/Up/Down Resize Windows
-			["<A-Up>"] = { "<cmd>resize -2<CR>", desc = "Resize split up" },
-			["<A-Down>"] = { "<cmd>resize +2<CR>", desc = "Resize split down" },
-			["<A-Left>"] = { "<cmd>vertical resize -2<CR>", desc = "Resize split left" },
-			["<A-Right>"] = { "<cmd>vertical resize +2<CR>", desc = "Resize split right" },
-			["<leader>xx"] = { "<cmd>TroubleToggle<cr>", noremap = true, desc = "Toggle Trouble" },
+			["<leader>Q"] = { "^", desc = "Home" },
+			["<leader>E"] = { "$", desc = "End" },
+			-- ALT + Left/Right/Up/Down to Resize Windows
+			["<A-Left>"] = { "<C-W><", desc = "Resize Window Left" },
+			["<A-Right>"] = { "<C-W>>", desc = "Resize Window Right" },
+			["<A-Up>"] = { "<C-W>+", desc = "Resize Window Up" },
+			["<A-Down>"] = { "<C-W>-", desc = "Resize Window Down" },
+			-- CTRL + SHIFT + Left/Right to Switch Tabs
+			["<C-S-Left>"] = { "<cmd>BufferLineCyclePrev<cr>", desc = "Switch Tab Left" },
+			["<C-S-Right>"] = { "<cmd>BufferLineCycleNext<cr>", desc = "Switch Tab Right" },
+			-- Trouble mappings
+			["<leader>xx"] = { "<cmd>TroubleToggle<cr>", desc = "Trouble Toggle" },
 			["<leader>xw"] = {
-				"<cmd>TroubleToggle workspace_diagnostics<cr>",
-				noremap = true,
-				desc = "Toggle Trouble with Workspace Diagnostics",
+				"<cmd>TroubleToggle lsp_workspace_diagnostics<cr>",
+				desc = "Trouble Workspace Diagnostics",
 			},
 			["<leader>xd"] = {
-				"<cmd>TroubleToggle document_diagnostics<cr>",
-				noremap = true,
-				desc = "Toggle Trouble with Document Diagnostics",
+				"<cmd>TroubleToggle lsp_document_diagnostics<cr>",
+				desc = "Trouble Document Diagnostics",
 			},
-			["<leader>xl"] = { "<cmd>TroubleToggle loclist<cr>", noremap = true, desc = "Trouble Local List" },
-			["<leader>xq"] = { "<cmd>TroubleToggle quickfix<cr>", noremap = true, desc = "Trouble Quickfix" },
-			["gR"] = { "<cmd>TroubleToggle lsp_references<cr>", noremap = true, desc = "Trouble Lsp References" },
+			["<leader>xl"] = { "<cmd>TroubleToggle loclist<cr>", desc = "Trouble Location List" },
+			["<leader>xq"] = { "<cmd>TroubleToggle quickfix<cr>", desc = "Trouble Quick Fix" },
+			["<leader>xr"] = { "<cmd>TroubleToggle lsp_references<cr>", desc = "Trouble References" },
+			-- quick save
+			["<C-s>"] = { ":w!<cr>", desc = "Save File" }, -- change description but the same command
 		},
 		i = {
-			["kj"] = { "<ESC>", noremap = true, desc = "Escape Insert Mode" },
+			-- Exit insert mode
+			["kj"] = { "<ESC>", desc = "Exit Insert Mode" },
 		},
 		t = {
 			-- setting a mapping to false will disable it
 			-- ["<esc>"] = false,
 		},
 		v = {
-			-- ["<"] = { "<gv", noremap = true, desc = "Reindent" },
-			-- [">"] = { ">gv", noremap = true, desc = "Reindent" },
-			["gq"] = { "<cmd>lua vim.lsp.buf.format<cr>", noremap = true, desc = "Format", async = true },
+			-- Indent Selection one level
+			["<leader>>"] = { ">>", desc = "Indent Selection Right" },
+			["<leader><"] = { "<<", desc = "Indent Selection Left" },
 		},
 	},
 
@@ -258,21 +293,27 @@ local config = {
 		init = {
 			-- You can disable default plugins as follows:
 			-- ["goolord/alpha-nvim"] = { disable = true },
+
+			-- You can also add new plugins here as well:
+			-- Add plugins, the packer syntax without the "use"
+			-- { "andweeb/presence.nvim" },
+			-- {
+			--   "ray-x/lsp_signature.nvim",
+			--   event = "BufRead",
+			--   config = function()
+			--     require("lsp_signature").setup()
+			--   end,
+			-- },
+
+			-- We also support a key value style plugin definition similar to NvChad:
+			-- ["ray-x/lsp_signature.nvim"] = {
+			--   event = "BufRead",
+			--   config = function()
+			--     require("lsp_signature").setup()
+			--   end,
+			-- },
 			--
-			-- Disabled Plugins
-			--
-			-- Nvim LSP
-			-- ["neovim/nvim-lspconfig"] = { disable = true },
-			-- Mason LSP
-			-- ["williamboman/mason.nvim"] = { disable = true },
-			-- ["williamboman/mason-lspconfig.nvim"] = { disable = true },
-			-- ["williamboman/mason-null-ls.nvim"] = { disable = true },
-			-- ["jayp0521/mason-null-ls.nvim"] = { disable = true },
-			--
-			-- Added Plugins
-			--
-			-- Copilot
-			-- { "github/copilot.vim" },
+			-- Github Copilot
 			["zbirenbaum/copilot.lua"] = {
 				config = function()
 					require("copilot").setup({
@@ -285,25 +326,6 @@ local config = {
 					})
 				end,
 			},
-			-- Rust Tools
-			["simrat39/rust-tools.nvim"] = {
-				config = function()
-					require("rust-tools").setup({
-						server = {
-							on_attach = function(_, bufnr)
-								-- Hover actions
-								vim.keymap.set("n", "K", "<cmd>RustHoverActions<cr>", { buffer = bufnr })
-								-- Code action groups
-								vim.keymap.set("n", "<leader>a", "<cmd>RustRunnables<cr>", { buffer = bufnr })
-							end,
-						},
-					})
-				end,
-			},
-			-- Planary
-			-- { "nvim-lua/plenary.nvim" },
-			-- DAP
-			{ "mfussenegger/nvim-dap" },
 			-- Trouble
 			["folke/trouble.nvim"] = {
 				requires = "kyazdani42/nvim-web-devicons",
@@ -311,19 +333,51 @@ local config = {
 					require("trouble").setup({})
 				end,
 			},
-			-- Markdown Priview
-			{
-				"iamcco/markdown-preview.nvim",
+			-- Markdown Preview
+			["iamcco/markdown-preview.nvim"] = {
 				run = function()
 					vim.fn["mkdp#util#install"]()
 				end,
 			},
-			-- LuaSnip
-			["benfowler/telescope-luasnip.nvim"] = {
-				after = "telescope.nvim",
-				module = "telescope._extensions.luasnip",
+			-- Rust Tools
+			["simrat39/rust-tools.nvim"] = {
+				after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
 				config = function()
-					require("telescope").load_extension("luasnip")
+					require("rust-tools").setup({
+						server = astronvim.lsp.server_settings("rust_analyzer"), -- get the server settings and built in capabilities/on_attach
+					})
+				end,
+			},
+			-- Dart/Flutter
+			["akinsho/flutter-tools.nvim"] = {
+				requires = "nvim-lua/plenary.nvim",
+				after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
+				config = function()
+					require("flutter-tools").setup({
+						lsp = astronvim.lsp.server_settings("dartls"), -- get the server settings and built in capabilities/on_attach
+						widget_guides = { enabled = true, debug = true },
+						decorations = {
+							statusline = { device = true, app_version = true },
+						},
+					})
+				end,
+			},
+			-- Typescript
+			["jose-elias-alvarez/typescript.nvim"] = {
+				after = "mason-lspconfig.nvim",
+				config = function()
+					require("typescript").setup({
+						server = astronvim.lsp.server_settings("tsserver"),
+					})
+				end,
+			},
+			-- Clangd
+			["p00f/clangd_extensions.nvim"] = {
+				after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
+				config = function()
+					require("clangd_extensions").setup({
+						server = astronvim.lsp.server_settings("clangd"),
+					})
 				end,
 			},
 		},
@@ -343,20 +397,45 @@ local config = {
 			return config -- return final config table
 		end,
 		treesitter = { -- overrides `require("treesitter").setup(...)`
-			-- ensure_installed = { "lua" },
+			ensure_installed = {
+				"lua",
+				"rust",
+				"bash",
+				"json",
+				"yaml",
+				"toml",
+				"html",
+				"css",
+				"javascript",
+				"typescript",
+				"tsx",
+				"graphql",
+				"lua",
+				"python",
+				"c",
+				"cpp",
+				"go",
+				"java",
+				"php",
+				"ruby",
+				"dart",
+			},
 		},
 		-- use mason-lspconfig to configure LSP installations
 		["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
-			-- ensure_installed = { "sumneko_lua" },
+			ensure_installed = { "sumneko_lua", "rust_analyzer", "tsserver" },
 		},
 		-- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
 		["mason-null-ls"] = { -- overrides `require("mason-null-ls").setup(...)`
-			-- ensure_installed = { "prettier", "stylua" },
+			ensure_installed = { "prettier", "stylua" },
 		},
-
+		["mason-nvim-dap"] = { -- overrides `require("mason-nvim-dap").setup(...)`
+			-- ensure_installed = { "python" },
+		},
+		-- NeoTree Options
 		["neo-tree"] = {
 			window = {
-				width = 50,
+				width = 30,
 				mappings = {
 					["l"] = "open",
 					["<Right>"] = "open",
@@ -372,14 +451,18 @@ local config = {
 			},
 		},
 	},
-
 	-- LuaSnip Options
 	luasnip = {
-		-- Add paths for including more VS Code style snippets in luasnip
-		vscode_snippet_paths = {},
 		-- Extend filetypes
 		filetype_extend = {
 			-- javascript = { "javascriptreact" },
+		},
+		-- Configure luasnip loaders (vscode, lua, and/or snipmate)
+		vscode = {
+			-- Add paths for including more VS Code style snippets in luasnip
+			paths = {
+				"./lua/user/snippets",
+			},
 		},
 	},
 
@@ -397,45 +480,45 @@ local config = {
 			path = 250,
 		},
 	},
-	-- Telescope
-	["telescope"] = {
-		defaults = {
-			mappings = {
-				-- i = { ["<C-a>"] = trouble.open_with_trouble },
-				-- n = { ["<C-a>"] = trouble.open_with_trouble },
-			},
-		},
+
+	-- Customize Heirline options
+	heirline = {
+		-- -- Customize different separators between sections
+		-- separators = {
+		--   tab = { "", "" },
+		-- },
+		-- -- Customize colors for each element each element has a `_fg` and a `_bg`
+		-- colors = function(colors)
+		--   colors.git_branch_fg = astronvim.get_hlgroup "Conditional"
+		--   return colors
+		-- end,
+		-- -- Customize attributes of highlighting in Heirline components
+		-- attributes = {
+		--   -- styling choices for each heirline element, check possible attributes with `:h attr-list`
+		--   git_branch = { bold = true }, -- bold the git branch statusline component
+		-- },
+		-- -- Customize if icons should be highlighted
+		-- icon_highlights = {
+		--   breadcrumbs = false, -- LSP symbols in the breadcrumbs
+		--   file_icon = {
+		--     winbar = false, -- Filetype icon in the winbar inactive windows
+		--     statusline = true, -- Filetype icon in the statusline
+		--   },
+		-- },
 	},
-	--
+
 	-- Modify which-key registration (Use this with mappings table in the above.)
 	["which-key"] = {
-		-- Add bindings
+		-- Add bindings which show up as group name
 		register = {
 			-- first key is the mode, n == normal mode
 			n = {
 				-- second key is the prefix, <leader> prefixes
 				["<leader>"] = {
-					-- which-key registration table for normal mode, leader prefix
-					-- ["N"] = { "<cmd>tabnew<cr>", "New Buffer" },
+					-- third key is the key to bring up next level and its displayed
+					-- group name in which-key top level menu
+					["b"] = { name = "Buffer" },
 				},
-				["b"] = {},
-				["c"] = {},
-				["e"] = {},
-				["f"] = {},
-				["g"] = {},
-				["i"] = {},
-				["m"] = {},
-				["n"] = {},
-				["p"] = {},
-				["q"] = {},
-				["r"] = {},
-				["s"] = {},
-				["t"] = {},
-				["u"] = {},
-				["v"] = {},
-				["w"] = {},
-				["x"] = {},
-				["z"] = {},
 			},
 		},
 	},
