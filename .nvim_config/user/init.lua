@@ -334,7 +334,8 @@ local config = {
 				end,
 			},
 			-- Markdown Preview
-			["iamcco/markdown-preview.nvim"] = {
+			{
+				"iamcco/markdown-preview.nvim",
 				run = function()
 					vim.fn["mkdp#util#install"]()
 				end,
@@ -380,6 +381,7 @@ local config = {
 					})
 				end,
 			},
+			-- Markdown Preview
 		},
 		-- All other entries override the require("<key>").setup({...}) call for default plugins
 		["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`

@@ -163,7 +163,13 @@ export PATH="$PATH:$HOME/vale"
 export PATH="$HOME/.cargo/bin:$PATH"
 # WASM bindgen
 export PATH="$PATH:$HOME/.cache/.wasm-pack/.wasm-bindgen-cargo-install-0.2.83/bin"
+# Jetbrains IDE JVM export
+export _JAVA_AWT_WM_NONREPARENTING=1
+# MDBook
+export PATH="$PATH:$HOME/.cargo/bin"
 
+# If running from tty1 start sway
+[ "$(tty)" = "/dev/tty1" ] && exec sway
 
 # bun completions
 [ -s "/home/mat/.bun/_bun" ] && source "/home/mat/.bun/_bun"
