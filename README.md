@@ -34,6 +34,8 @@ Follow these steps get the dotfiles:
 
 ## NeoVim
 
+> This is for NeoVim 8, which is required to use my dotfiles.
+
 #### Prerequisites
 
 ##### NeoVim Prerequisites
@@ -246,7 +248,7 @@ This will add my updated version of AstroNvim with added plugins and keybinds
 1. Navigate to the dotfiles directory
 2. Run
    - `make all`
-   - This will add a link from `.nvim_config/user` to `nvim/user`. Any edit you make to the configuration should be done in this directory. Please see the [AstroNvim](https://astronvim.github.io/) documentation if you have any questions.
+   - This will add a symbolic link from `.nvim_config/user` to `nvim/user`. Any edit you make to the configuration should be done in this directory. Please see the [AstroNvim](https://astronvim.github.io/) documentation if you have any questions.
 3. Run
    - `nvim +PackerSync`
 4. Type `q` to exit the Packer window after everything has been updated.
