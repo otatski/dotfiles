@@ -2,7 +2,9 @@
 
 > These are the dotfiles that I use for my system, **Pop!\_OS** **_22.04_** **LTS**. Keep that in mind when trying to use any of the commands used in this Readme. These have not been tested on any other environments.
 
-## Table of Centents:
+## Table of Contents:
+
+- [Dotfiles](#Dotfiles)
 
 - [NeoVim](#NeoVim)
 
@@ -11,6 +13,22 @@
 - ZSH
 
 - Oh My ZSH
+
+---
+
+---
+
+## Dotfiles
+
+Follow these steps get the dotfiles:
+
+1. Navigate to your home directory
+2. Run:
+   - `git clone git@github.com:otatski/dotfiles.git`
+3. Remove any files or folders you don't wish to use. For example:
+   - If you just want the AstroNvim configuration then delete everything but `.nvim_config`, `makefile`, and `README.md`.
+
+---
 
 ---
 
@@ -128,20 +146,107 @@ By default the downloaded archives are removed, But if you give getnf the `-k` f
 
 ---
 
-#### Astrovim
+#### AstroNvim
 
 ##### Prerequisites
 
 - [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
   - See [Fonts](#Fonts) above.
-- Neovim 0.8 (Not including nightly)
-- Tree-sitter CLI (Note: This is only necessary if you want to use auto_install feature with Treesitter)
-- A clipboard tool is necessary for the integration with the system clipboard (see :help clipboard-tool for supported solutions)
+- [Neovim 0.8 (Not including nightly)](https://github.com/neovim/neovim/releases/tag/v0.8.0)
+  - See [NeoVim](#NeoVim) above.
+- [Tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md) (Note: This is only necessary if you want to use auto_install feature with Treesitter)
+- A clipboard tool is necessary for the integration with the system clipboard (see [:help clipboard-tool](https://neovim.io/doc/user/provider.html#clipboard-tool) for supported solutions)
 - Terminal with true color support (for the default theme, otherwise it is dependent on the theme you are using)
+  - See [Kitty](#Kitty) below.
 - Optional Requirements:
-  - ripgrep - live grep telescope search (<leader>fw)
-  - lazygit - git ui toggle terminal (<leader>tl or <leader>gg)
-  - go DiskUsage() - disk usage toggle terminal (<leader>tu)
-  - bottom - process viewer toggle terminal (<leader>tt)
-  - Python - python repl toggle terminal (<leader>tp)
-  - Node - node repl toggle terminal (<leader>tn)
+  - [ripgrep](https://github.com/BurntSushi/ripgrep) - live grep telescope search (`<leader>fw`)
+    - `sudo apt install ripgrep`
+  - [lazygit](https://github.com/jesseduffield/lazygit) - git ui toggle terminal (`<leader>tl` or `<leader>gg`)
+    - Debian/Ubuntu
+      ```bash
+         LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+         curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+         tar xf lazygit.tar.gz lazygit
+         sudo install lazygit /usr/local/bin
+      ```
+  - [go DiskUsage()](https://github.com/dundee/gdu) - disk usage toggle terminal (`<leader>tu`)
+  - [bottom](https://github.com/ClementTsang/bottom) - process viewer toggle terminal (`<leader>tt`)
+  - [Python](https://www.python.org/) - python repl toggle terminal (`<leader>tp`)
+    - NeoVim Python Support
+      - `pip install pynvim`
+  - [Node](https://nodejs.org/en/) - node repl toggle terminal (`<leader>tn`)
+    - NeoVim Node Support
+      - npm i -g neovim
+
+> **INFO:** When using default theme: For MacOS, the default terminal does not have true color support. You will need to use [iTerm2](https://iterm2.com/) or [another terminal emulator](https://gist.github.com/XVilka/8346728#terminal-emulators) that has true color support.
+
+---
+
+---
+
+##### Installation
+
+###### Linux/Mac OS (Unix)
+
+1. Make a backup of your current nvim folder
+   - `mv ~/.config/nvim ~/.config/nvim.bak`
+2. Clean neovim folders (Optional but recommended)
+   - ```bash
+     mv ~/.local/share/nvim ~/.local/share/nvim.bak
+     mv ~/.local/state/nvim ~/.local/state/nvim.bak
+     mv ~/.cache/nvim ~/.cache/nvim.bak
+     ```
+3. Clone the repository
+
+   - ```bash
+     git clone https://github.com/AstroNvim/AstroNvim ~/dotfiles/nvim/.config/nvim
+     nvim
+     ```
+
+---
+
+###### Windows (PowerShell)
+
+1. Make a backup of your current nvim folder
+
+   - `Move-Item $env:LOCALAPPDATA\nvim $env:LOCALAPPDATA\nvim.bak`
+
+2. Clean old plugins (Optional but recommended)
+
+   - `Move-Item $env:LOCALAPPDATA\nvim-data $env:LOCALAPPDATA\nvim-data.bak`
+
+3. Clone the repository
+
+   - ```powershell
+       git clone https://github.com/AstroNvim/AstroNvim $env:LOCALAPPDATA\nvim
+       nvim
+     ```
+
+---
+
+###### Docker
+
+If you want to try AstroNvim before installing you can use the following Docker command to open a test instance without touching your current Neovim configuration. This also allows you to use :TSInstall and :LspInstall to load and evaluate language servers and treesitter parsers as well.
+
+```shell
+    docker run -w /root -it --rm alpine:edge sh -uelic '
+    apk add bash git lua nodejs npm lazygit bottom python3 go neovim ripgrep alpine-sdk --update
+    git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+    # Uncomment the line below and replace the link with your user config repo to load a user config
+    # git clone https://github.com/username/AstroNvim_user ~/.config/nvim/lua/user
+    nvim --headless -c "autocmd User PackerComplete quitall"
+    nvim
+    '
+```
+
+##### AstroNvim User Config
+
+This will add my updated version of AstroNvim with added plugins and keybinds
+
+1. Navigate to the dotfiles directory
+2. Run
+   - `make all`
+   - This will add a link from `.nvim_config/user` to `nvim/user`. Any edit you make to the configuration should be done in this directory. Please see the [AstroNvim](https://astronvim.github.io/) documentation if you have any questions.
+3. Run
+   - `nvim +PackerSync`
+4. Type `q` to exit the Packer window after everything has been updated.
