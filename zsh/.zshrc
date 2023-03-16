@@ -140,6 +140,28 @@ alias cacrestart="service pcscd restart"
 alias cacdown="service pcscd stop"
 # Juptyer Notebook
 alias jn="jupyter notebook --no-browser"
+# Python
+alias py="python3"
+alias pip="pip3"
+alias python="python3"
+# Git aliases
+alias g="git"
+alias gs="git status"
+alias ga="git add"
+alias gaa="git add ."
+alias gc="git commit"
+alias gcm="git commit -m"
+alias gco="git checkout"
+alias gd="git diff"
+alias gdc="git diff --cached"
+alias gds="git diff --staged"
+alias gcsg="git config --global credential.helper store"
+alias gcsl="git config --local credential.helper store"
+alias gcl="git clone"
+alias gpl="git pull"
+alias gps="git push"
+
+
 
 # EXPORTS
 ## Flutter and Dart
@@ -167,6 +189,8 @@ export PATH="$PATH:$HOME/.cache/.wasm-pack/.wasm-bindgen-cargo-install-0.2.83/bi
 export _JAVA_AWT_WM_NONREPARENTING=1
 # MDBook
 export PATH="$PATH:$HOME/.cargo/bin"
+# Java
+export JAVA_HOME="/usr/java/jre1.8.0_361"
 
 # If running from tty1 start sway
 [ "$(tty)" = "/dev/tty1" ] && exec sway
@@ -192,6 +216,6 @@ unset __conda_setup
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+# source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 
