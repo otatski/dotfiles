@@ -3,7 +3,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
         opts = {
             ensure_installed = {
-                "rust_analyzer",
+                -- "rust_analyzer",
                 "tsserver",
             }
         }
@@ -21,16 +21,16 @@ return {
             }
         end,
     },
-    {
-        "simrat39/rust-tools.nvim",
-        dependencies = { "williamboman/mason-lspconfig.nvim" },
-        ft = { "rs" },
-        opts = function()
-            return {
-                server = astronvim.lsp.server_settings "rust_analyzer"
-            }
-        end
-    },
+    -- {
+    --     "simrat39/rust-tools.nvim",
+    --     dependencies = { "williamboman/mason-lspconfig.nvim" },
+    --     ft = { "rs" },
+    --     opts = function()
+    --         return {
+    --             server = astronvim.lsp.server_settings "rust_analyzer"
+    --         }
+    --     end
+    -- },
     {
         'akinsho/flutter-tools.nvim',
         lazy = false,
