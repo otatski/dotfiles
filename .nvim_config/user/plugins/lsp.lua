@@ -4,7 +4,7 @@ return {
         opts = {
             ensure_installed = {
                 -- "rust_analyzer",
-                "tsserver",
+                -- "tsserver",
             }
         }
     },
@@ -21,16 +21,6 @@ return {
             }
         end,
     },
-    -- {
-    --     "simrat39/rust-tools.nvim",
-    --     dependencies = { "williamboman/mason-lspconfig.nvim" },
-    --     ft = { "rs" },
-    --     opts = function()
-    --         return {
-    --             server = astronvim.lsp.server_settings "rust_analyzer"
-    --         }
-    --     end
-    -- },
     {
         'akinsho/flutter-tools.nvim',
         lazy = false,
@@ -44,14 +34,11 @@ return {
             }
         }
     },
+    "jose-elias-alvarez/typescript.nvim", -- add lsp plugin
     {
-        "jose-elias-alvarez/typescript.nvim",
-        ft = { "ts", "js", "vue", "jsx" },
-        dependencies = { "williamboman/mason-lspconfig.nvim" },
-        opts = function()
-            return {
-                server = astronvim.lsp.server_settings "tsserver",
-            }
-        end
+        "williamboman/mason-lspconfig.nvim",
+        opts = {
+            ensure_installed = { "tsserver" }, -- automatically install lsp
+        },
     },
 }

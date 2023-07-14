@@ -101,6 +101,36 @@ source $ZSH/oh-my-zsh.sh
 # Set colors for LS_COLORS
 # eval `dircolors ~/.dircolors`
 
+# EXPORTS
+## Flutter and Dart
+export PATH="$PATH:/home/$USER/flutter/bin"
+## Cargo Bin
+export PATH="$PATH:/home/$USER/.cargo/bin"
+## Local Bin
+export PATH="$PATH:/home/$USER/.local/bin/"
+## Golang
+export PATH="$PATH:/usr/local/go/bin"
+## NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+# Vale
+export PATH="$PATH:$HOME/vale"
+# Helix
+export PATH="$HOME/.cargo/bin:$PATH"
+# WASM bindgen
+export PATH="$PATH:$HOME/.cache/.wasm-pack/.wasm-bindgen-cargo-install-0.2.83/bin"
+# Jetbrains IDE JVM export
+export _JAVA_AWT_WM_NONREPARENTING=1
+# MDBook
+export PATH="$PATH:$HOME/.cargo/bin"
+# Java
+export JAVA_HOME="/usr/java/jre1.8.0_361"
+# Neovim
+export PATH="$PATH:$HOME/nvim.appimage"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -111,7 +141,7 @@ source $ZSH/oh-my-zsh.sh
 # Source this file 
 alias sz="source /home/$USER/.zshrc"
 # Open nvim alias
-alias nv="nvim"
+alias nv="$HOME/nvim.appimage"
 # Change directory to Documents directory
 alias doc="cd $HOME/Documents"
 # Change directory to development directory
@@ -160,37 +190,6 @@ alias gcsl="git config --local credential.helper store"
 alias gcl="git clone"
 alias gpl="git pull"
 alias gps="git push"
-
-
-
-# EXPORTS
-## Flutter and Dart
-export PATH="$PATH:/home/$USER/flutter/bin"
-## Cargo Bin
-export PATH="$PATH:/home/$USER/.cargo/bin"
-## Local Bin
-export PATH="$PATH:/home/$USER/.local/bin/"
-## Golang
-export PATH="$PATH:/usr/local/go/bin"
-## NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-# Vale
-export PATH="$PATH:$HOME/vale"
-# Helix
-export PATH="$HOME/.cargo/bin:$PATH"
-# WASM bindgen
-export PATH="$PATH:$HOME/.cache/.wasm-pack/.wasm-bindgen-cargo-install-0.2.83/bin"
-# Jetbrains IDE JVM export
-export _JAVA_AWT_WM_NONREPARENTING=1
-# MDBook
-export PATH="$PATH:$HOME/.cargo/bin"
-# Java
-export JAVA_HOME="/usr/java/jre1.8.0_361"
 
 # If running from tty1 start sway
 [ "$(tty)" = "/dev/tty1" ] && exec sway

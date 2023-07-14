@@ -18,12 +18,16 @@ return {
   },
   -- Set colorscheme to use
   colorscheme = "astrodark",
+  -- colorscheme = "gruvbox",
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
     virtual_text = true,
     underline = true,
   },
   lsp = {
+    setup_handlers = {
+      tsserver = function(_, opts) require("typescript").setup { server = opts } end
+    },
     config = {
       rust_analyzer = {
         settings = {
