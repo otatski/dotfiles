@@ -6,4 +6,14 @@
     <property name="Threshold" type="int" value="1"/>
     <property name="Acceleration" type="double" value="2.000000"/>
   </property>
+  <property name="Corsair_CORSAIR_K65_RGB_MINI_60_Mechanical_Gaming_Keyboard" type="empty">
+    <property name="RightHanded" type="bool" value="true"/>
+    <property name="Threshold" type="int" value="2"/>
+    <property name="Acceleration" type="double" value="0.000000"/>
+  </property>
+  <property name="SteelSeries_SteelSeries_ALC" type="empty">
+    <property name="RightHanded" type="bool" value="true"/>
+    <property name="Threshold" type="int" value="2"/>
+    <property name="Acceleration" type="double" value="0.000000"/>
+  </property>
 </channel>

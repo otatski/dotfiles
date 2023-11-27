@@ -101,6 +101,9 @@ source $ZSH/oh-my-zsh.sh
 # Set colors for LS_COLORS
 # eval `dircolors ~/.dircolors`
 
+# VSCode shell
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
+
 # EXPORTS
 ## Flutter and Dart
 export PATH="$PATH:/home/$USER/flutter/bin"
@@ -130,7 +133,8 @@ export PATH="$PATH:$HOME/.cargo/bin"
 # Java
 export JAVA_HOME="/usr/java/jre1.8.0_361"
 # Neovim
-export PATH="$PATH:$HOME/nvim.appimage"
+# export PATH="$PATH:$HOME/nvim.appimage"
+export PATH="$PATH:$HOME/nvim-linux64/bin"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -141,7 +145,8 @@ export PATH="$PATH:$HOME/nvim.appimage"
 # Source this file 
 alias sz="source /home/$USER/.zshrc"
 # Open nvim alias
-alias nv="$HOME/nvim.appimage"
+# alias nv="$HOME/nvim.appimage"
+alias nv="$HOME/nvim-linux64/bin/nvim"
 # Change directory to Documents directory
 alias doc="cd $HOME/Documents"
 # Change directory to development directory
@@ -190,6 +195,10 @@ alias gcsl="git config --local credential.helper store"
 alias gcl="git clone"
 alias gpl="git pull"
 alias gps="git push"
+# Starbase Alpha
+alias starbase="cd /home/$USER/development/personal/school/starbase_alpha"
+# Lock computer
+alias lock="~/dotfiles/awesome/.config/awesome/lock.sh"
 
 # If running from tty1 start sway
 [ "$(tty)" = "/dev/tty1" ] && exec sway
@@ -211,6 +220,9 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+export DENO_INSTALL="/home/mat/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
