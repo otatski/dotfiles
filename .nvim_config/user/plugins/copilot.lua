@@ -1,6 +1,6 @@
 return {
     "zbirenbaum/copilot.lua",
-    lazy = false,
+    lazy = true,
     opts = function()
         return {
             panel = { auto_refresh = true },
