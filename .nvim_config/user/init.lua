@@ -39,7 +39,7 @@ return {
           },
         },
       },
-},
+    },
     -- customize lsp formatting options
     formatting = {
       -- control auto formatting on save

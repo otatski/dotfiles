@@ -4,7 +4,9 @@ return {
     lazy = false,
     name = "vscode",
     config = function()
-      require("vscode").setup()
+      require("vscode").setup({
+        transparent = true,
+      })
     end,
   }
 }
